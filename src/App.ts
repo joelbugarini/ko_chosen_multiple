@@ -28,25 +28,26 @@ class App {
 
   }
 
-  FruitAdded(){
-
+  FruitAdded =(item: any)=>{
+    console.log("add","api/Fruit/1564/" + item.selected)
   }
 
-  FruitDeleted(){
-
+  FruitDeleted(item: any){
+    console.log("delete","api/Fruit/1564/" + item.deselected);
+    
   }
 }
 
 let getFruits = (callback: any) => {
   setTimeout(() => {
     callback();
-  }, 4215);
+  }, 2215);
 }
 
 let getFruitsSelected = (callback: any) => {
   setTimeout(() => {
     callback();
-  }, 2543);
+  }, 1543);
 }
 
 export default App;

@@ -5,8 +5,6 @@ import 'chosen-js/chosen.css';
 export function bindingHandlers() {
     ko.bindingHandlers.tags = {
         init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
-            // This will be called when the binding is first applied to an element
-            // Set up any initial state, event handlers, etc. here
             let bindings = ko.utils.unwrapObservable(allBindings());
   
             $(element).chosen({
@@ -15,18 +13,17 @@ export function bindingHandlers() {
             
             $(element).on('change', (evt: any, params: any) => {
                 if (typeof params.selected !== "undefined") {
-                    console.log("selected", params)
+                    let selected = bindings.selected.bind(evt, params);
+                    selected();
                 }
                 if (typeof params.deselected !== "undefined") {
-                    console.log("deselected", params)
+                    let deselect =bindings.deselected.bind(evt, params);
+                    deselect();
                 }               
             });
 
         },
         update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
-            // This will be called once when the binding is first applied to an element,
-            // and again whenever any observables/computeds that are accessed change
-            // Update the DOM element based on the supplied values here.
             let bindings = ko.utils.unwrapObservable(allBindings());
             let value = bindings.tagValue;
             let text = bindings.tagText;
